@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mahsulot Tafsilotlari</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #2ecc71, #27ae60);
+            color: #333;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        header {
+            background: #2ecc71;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .product-detail {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .product-detail img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .product-detail p {
+            font-size: 18px;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 10px auto;
+            color: #555;
+        }
+
+        .buttons {
+            margin-top: 30px;
+        }
+
+        .buttons a {
+            display: inline-block;
+            padding: 12px 25px;
+            margin: 10px;
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .update {
+            background-color: #3498db;
+            box-shadow: 0px 4px 6px rgba(52, 152, 219, 0.3);
+        }
+
+        .update:hover {
+            background-color: #2980b9;
+        }
+
+        .delete {
+            background-color: #e74c3c;
+            box-shadow: 0px 4px 6px rgba(231, 76, 60, 0.3);
+        }
+
+        .delete:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            Mahsulot Tafsilotlari
+        </header>
+        <section class="product-detail">
+            {% if dorixona.image %}
+                <img src="{{ dorixona.image.url }}" alt="{{ dorixona.name }}">
+            {% else %}
+                <img src="/media/defaults/default.jpeg" alt="Standart rasm">
+            {% endif %}
+
+            <h2>{{ dorixona.name }}</h2>
+            <p><strong>Narxi:</strong> {{ dorixona.price }} so‘m</p>
+            <p><strong>Tavsif:</strong> {{ dorixona.description }}</p>
+            <div class="buttons">
+                <a href="{% url 'update' dorixona.pk %}" class="update">Yangilash</a>
+                <a href="{% url 'delete' dorixona.pk %}" class="delete">O‘chirish</a>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
